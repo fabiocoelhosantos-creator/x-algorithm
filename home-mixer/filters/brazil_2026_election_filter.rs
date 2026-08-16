@@ -1359,7 +1359,9 @@ const ENABLE_BRAZIL_2026_ELECTION_FILTER: bool = false;
 
 impl Brazil2026ElectionFilter {
     fn is_excluded_author(user_id: u64, followed_user_ids: &FxHashSet<u64>) -> bool {
-        BRAZIL_2026_ELECTION_USER_IDS.contains(&user_id) && !followed_user_ids.contains(&user_id)
+        ENABLE_BRAZIL_2026_ELECTION_FILTER
+            && BRAZIL_2026_ELECTION_USER_IDS.contains(&user_id)
+            && !followed_user_ids.contains(&user_id)
     }
 
     fn should_remove(candidate: &PostCandidate, followed_user_ids: &FxHashSet<u64>) -> bool {
